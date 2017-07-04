@@ -36,7 +36,7 @@ def add(request):
 
     users_loader = UsersLoader()
     ratings_loader = RatingsLoader()
-    print 'loop'
+
     for user in users:
         # TODO: validate input data (
         #   age is numeric [0, 100],
@@ -83,6 +83,7 @@ def recommendations(request):
     user_ids = request.GET.getlist('user_id', [])
 
     if len(user_ids) == 0:
+	print 'user_ids is empty'
         JsonResponse({})
 
     rec_sys = RecSys()
@@ -90,6 +91,7 @@ def recommendations(request):
     result = {}
 
     for user_id in user_ids:
+	print str(user_id)
         try:
             recommendations = rec_sys.get_top_user_recommendations(user_id, 15)
         except RecSysException as e:
