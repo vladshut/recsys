@@ -66,7 +66,7 @@ class Algorithm:
         coupons_bought_by_active_user = self.ratingData.loc[self.ratingData['patient_id'] == auid]['coupon_id'].unique()
         coupons_number_bought_by_user = len(coupons_bought_by_active_user)
 
-        # print ('COUPONS BOUGHT BY USER: ' + str(coupons_number_bought_by_user))
+        print ('COUPONS NUMBER BOUGHT BY USER: ' + str(coupons_number_bought_by_user))
 
         a_user_data = self.userData.ix[auid].to_dict()
         a_u_vector = self.vectorize_user_data(a_user_data)
@@ -98,6 +98,8 @@ class Algorithm:
 
         rating_data_cutted = self.ratingData[self.ratingData['patient_id'].isin(users_ids_to_find_similar_users)]
         self.activeUserCouponsRatingData = rating_data_cutted.loc[rating_data_cutted['coupon_id'].isin(coupons_bought_by_active_user)]
+
+        print ('SIMILAR USERS COUNT: ' + str(len(users_ids_to_find_similar_users)))
 
         for index, row in df_similar_users.iterrows():
             row['patient_id'] = index

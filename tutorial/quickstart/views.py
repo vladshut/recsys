@@ -93,6 +93,7 @@ def recommendations(request):
         try:
             recommendations = rec_sys.get_top_user_recommendations(user_id, 15)
         except RecSysException as e:
+            print (str(e))
             recommendations = []
 
         result[user_id] = recommendations
